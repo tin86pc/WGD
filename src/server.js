@@ -1,7 +1,5 @@
 import express from 'express'
 
-// require("dotenv").config()
-
 import { } from 'dotenv/config'
 
 import configViewEngine from './configs/viewEngine.js'
