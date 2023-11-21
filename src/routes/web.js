@@ -1,20 +1,30 @@
 import express from 'express';
-import homeController from '../controller/C1 home.js'
-import userController from '../controller/C2 user.js'
-import aboutController from '../controller/C3 about.js'
-import notFoundController from '../controller/C4 notFound.js'
+import controller from '../controller/controller.js'
+
 
 const router = express.Router();
 
 
 const initWebRoutes = (app) => {
-    router.get('/', homeController)
+    router.get('/', controller.home)
 
-    router.get('/user', userController)
+    router.get('/user', controller.user)
 
-    router.get('/about', aboutController)
+    router.get('/about', controller.about)
 
-    router.get('/*', notFoundController)
+    router.get('/dang_ky', controller.dangKy)
+
+    router.get('/dang_nhap', controller.dangNhap)
+
+    router.post('/add_user', controller.addUser)
+
+
+
+
+
+
+
+    router.get('/*', controller.notFound)
 
     return app.use('/', router);
 }
