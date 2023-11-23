@@ -1,11 +1,12 @@
 import express from 'express';
-import controller from '../controller/controller.js'
+import controller from './controller.js'
 
 
 const router = express.Router();
 
 
 const initWebRoutes = (app) => {
+
     router.get('/', controller.home)
 
     router.get('/user', controller.user)
@@ -29,4 +30,7 @@ const initWebRoutes = (app) => {
     return app.use('/', router);
 }
 
-export default initWebRoutes;
+export default {
+    initWebRoutes,
+
+}

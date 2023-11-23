@@ -2,9 +2,9 @@ import express from 'express'
 
 import { } from 'dotenv/config'
 
-import configViewEngine from './configs/viewEngine.js'
+import config from './config.js'
 
-import initWebRoutes from './routes/web.js'
+import Routes from './routes.js'
 
 import bodyParser from 'body-parser'
 
@@ -14,8 +14,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-configViewEngine(app)
-initWebRoutes(app)
+config.viewEngine(app)
+Routes.initWebRoutes(app)
 
 
 

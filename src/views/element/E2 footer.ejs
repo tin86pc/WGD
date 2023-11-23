@@ -1,5 +1,22 @@
 </div>
 </div>
+
+<script>
+
+    // xử lý phần link
+    var pathname = window.location.pathname;
+
+    var a = document.getElementsByTagName('a')
+    for (var i = 0; i < a.length; i++) {
+        a[i].className.replace(" active", "");
+        if (pathname === a[i].pathname) {
+            a[i].className += ' active'
+        }
+    }
+
+
+</script>
+
 </body>
 
 </html>

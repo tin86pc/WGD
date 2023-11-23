@@ -1,12 +1,19 @@
-import userService from "../service/userService.js"
+import userService from "./database.js"
 
 
 const home = (req, res) => {
     return res.render('V1 home.ejs')
 }
-const user = (req, res) => {
-    return res.render('V2 user.ejs')
+
+
+const user = async (req, res) => {
+    let usersList = await userService.getListUser();
+    return res.render('V2 user.ejs', { usersList })
 }
+
+
+
+
 const about = (req, res) => {
     const data = {
         name: "aaaaaaaaaa"
@@ -14,14 +21,15 @@ const about = (req, res) => {
     return res.render('V3 about.ejs', data)
 }
 
-
-const addUser = (req, res) => {
+// nhận dữ liệu từ form gửi lên
+const addUser = async (req, res) => {
 
     let email = req.body.email
     let pswd = req.body.pswd
 
-    userService.addUser(email, pswd)
-    return res.send('thêm người dùng')
+    await userService.addUser(email, pswd)
+
+    return res.redirect('/user')
 }
 
 const dangKy = (req, res) => {

@@ -2,7 +2,7 @@ import express from "express";
 
 
 
-const configViewEngine = (app) => {
+const viewEngine = (app) => {
     // Đặt vị trí lưu hình ảnh và file css , js
     // lên 1 cấp bằng đấu chấm (tính từ vị trí file hiện tại)
     // và vào thư mục public
@@ -17,4 +17,7 @@ const configViewEngine = (app) => {
 
 }
 
-export default configViewEngine;
+export default {
+    viewEngine,
+
+}
