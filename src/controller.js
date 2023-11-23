@@ -2,13 +2,13 @@ import userService from "./database.js"
 
 
 const home = (req, res) => {
-    return res.render('V1 home.ejs')
+    return res.render('home.ejs')
 }
 
 
 const user = async (req, res) => {
     let usersList = await userService.getListUser();
-    return res.render('V2 user.ejs', { usersList })
+    return res.render('user.ejs', { usersList })
 }
 
 
@@ -18,7 +18,7 @@ const about = (req, res) => {
     const data = {
         name: "aaaaaaaaaa"
     }
-    return res.render('V3 about.ejs', data)
+    return res.render('about.ejs', data)
 }
 
 // nhận dữ liệu từ form gửi lên
@@ -33,11 +33,11 @@ const addUser = async (req, res) => {
 }
 
 const dangKy = (req, res) => {
-    return res.render('V5 dangky.ejs')
+    return res.render('dangky.ejs')
 }
 
 const dangNhap = (req, res) => {
-    return res.render('V5 dangnhap.ejs')
+    return res.render('dangnhap.ejs')
 }
 
 
@@ -47,7 +47,7 @@ const dangNhap = (req, res) => {
 
 
 const notFound = (req, res) => {
-    return res.render('V4 notFound.ejs')
+    return res.render('notFound.ejs')
 }
 
 export default {
