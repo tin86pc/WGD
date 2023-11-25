@@ -1,5 +1,12 @@
 import mysql from 'mysql2/promise'
-import mahoa from './mahoa.js'
+import bcrypt from 'bcryptjs'
+
+let salt = bcrypt.genSaltSync(10);
+
+const hashPassWord = (pass) => {
+    let hash = bcrypt.hashSync(pass, salt);
+    return hash;
+}
 
 
 
@@ -10,9 +17,39 @@ const connection = await mysql.createConnection({
 });
 
 
+const kiemTraUser = async (lienhe, pass) => {
+    let user = [];
+    try {
+        const [rows, fields] = await connection.execute(
+            `Select * from users WHERE lienhe="${lienhe}"`
+        );
+        user = rows;
+        let hash = user[0].pass;
+
+        bcrypt.compare(pass, hash, (err, res) => {
+            console.log(res);
+            return user;
+        })
+
+
+
+
+        console.log(hash);
+
+
+
+        return user;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
 const addUser = async (lienhe, pass) => {
 
-    let hash = mahoa.hashPassWord(pass)
+    let hash = hashPassWord(pass)
 
     try {
         const [rows, fields] = await connection.execute(
@@ -98,5 +135,6 @@ export default {
     suaUser,
     xoaUser,
     getUser,
-    getListUser
+    getListUser,
+    kiemTraUser
 }

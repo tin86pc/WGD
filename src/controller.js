@@ -6,16 +6,18 @@ const trangChu = (req, res) => {
 }
 
 
-const xuLyDangNhap = (req, res) => {
+const xuLyDangNhap = async (req, res) => {
     console.log('Xử lý đăng nhập');
-    const email = req.body.email;
+    const lienhe = req.body.lienhe;
     const pass = req.body.pass
 
-    database.getUser('a');
+    // mật khẩu đúng sẽ trả về user
+    let user = await database.kiemTraUser(lienhe, pass) || {};
+    // user.khoa = "sdfs"
+    console.log(user);
 
-    if (email != undefined && pass != undefined) {
-        console.log(email, pass);
-    }
+
+    return res.render('dangnhap.ejs')
 
 
 
