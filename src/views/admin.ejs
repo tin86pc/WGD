@@ -1,0 +1,100 @@
+<%- include('element/header') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12  bg-light">
+
+
+
+
+                <h1>Admin</h1>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
+                    <button class="btn btn-success" type="submit">Tìm</button>
+                </div>
+
+                <p>Danh sách người dùng</p>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Liên lạc</th>
+                            <th>Quyền</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+
+                    <% for(var i=0; i<usersList.length; i++) {%>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <input type="text" class="form-control email<%=i%>" id="lienhe" name="lienhe"
+                                        readonly value=<%=usersList[i].lienhe %>>
+                                </td>
+
+                                <td>
+                                    <select class="form-select select<%=i%>" name="nhiemvu">
+                                        <option>Người dùng</option>
+                                        <option>Đối tác</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </td>
+
+                                <td>
+
+                                    <a href="/luu/<%=usersList[i].id%>">
+                                        <button type="button" class="btn btn-success">Lưu</button>
+                                    </a>
+
+                                    <a href="/xoa/<%=usersList[i].id%>">
+                                        <button type="button" class="btn btn-danger">Xóa</button>
+                                    </a>
+
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <% } %>
+
+
+                </table>
+
+
+                <script>
+
+
+
+
+
+
+                </script>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('element/footer') %>

@@ -1,19 +1,55 @@
 <%- include('element/header') %>
 
-    <h1>Đăng ký</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12  bg-light">
 
-    <form method="post" action="/add_user">
 
-        <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                <h1>Đăng ký WGĐ</h1>
+
+                <form method="post" action="/add_user">
+
+                    <div class="mb-3 mt-3">
+                        <label for="lienhe" class="form-label">Email/Số điện thoại:</label>
+                        <input type="text" class="form-control" id="lienhe" placeholder="Nhập email hoặc số điện thoại"
+                            name="lienhe" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="pass" placeholder="Nhập mật khẩu" name="pass"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="pwd" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

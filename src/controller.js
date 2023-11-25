@@ -1,62 +1,100 @@
-import userService from "./database.js"
+import database from "./database.js"
 
 
-const home = (req, res) => {
-    return res.render('home.ejs')
+const trangChu = (req, res) => {
+    return res.render('trangChu.ejs')
 }
 
 
-const user = async (req, res) => {
-    let usersList = await userService.getListUser();
-    return res.render('user.ejs', { usersList })
+const xuLyDangNhap = (req, res) => {
+    console.log('Xử lý đăng nhập');
+    const email = req.body.email;
+    const pass = req.body.pass
+
+    database.getUser('a');
+
+    if (email != undefined && pass != undefined) {
+        console.log(email, pass);
+    }
+
+
+
 }
 
 
+const admin = async (req, res) => {
+    let usersList = await database.getListUser();
+    return res.render('admin.ejs', { usersList })
+}
 
 
-const about = (req, res) => {
+const gioiThieu = (req, res) => {
     const data = {
         name: "aaaaaaaaaa"
     }
-    return res.render('about.ejs', data)
+    return res.render('gioiThieu.ejs', data)
 }
 
 // nhận dữ liệu từ form gửi lên
-const addUser = async (req, res) => {
-
-    let email = req.body.email
-    let pswd = req.body.pswd
-
-    await userService.addUser(email, pswd)
-
-    return res.redirect('/user')
+const addUser = (req, res) => {
+    console.log(req.body.lienhe, req.body.pass);
+    database.addUser(req.body.lienhe, req.body.pass)
+    return res.redirect('/dang_ky')
 }
+
+const luuUser = (req, res) => {
+    database.suaUser(req.params.id)
+    return res.redirect('/admin')
+}
+
+
+const xoaUser = (req, res) => {
+    database.xoaUser(req.params.id)
+    return res.redirect('/admin')
+}
+
 
 const dangKy = (req, res) => {
     return res.render('dangky.ejs')
 }
 
-const dangNhap = (req, res) => {
+
+const dangNhap = (req, res, next) => {
     return res.render('dangnhap.ejs')
 }
-
-
-
-
-
 
 
 const notFound = (req, res) => {
     return res.render('notFound.ejs')
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 export default {
-    home,
-    user,
-    about,
-    addUser,
+    trangChu,
+
+    gioiThieu,
     dangKy,
+
     dangNhap,
+    xuLyDangNhap,
+
+    admin,
+    addUser,
+    luuUser,
+    xoaUser,
+
+
 
 
 

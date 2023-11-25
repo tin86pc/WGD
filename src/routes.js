@@ -5,18 +5,18 @@ import controller from './controller.js'
 const router = express.Router();
 
 
-const initWebRoutes = (app) => {
+const initWeb = (app) => {
 
-    router.get('/', controller.home)
-
-    router.get('/user', controller.user)
-
-    router.get('/about', controller.about)
-
-    router.get('/dang_ky', controller.dangKy)
-
+    router.get('/', controller.trangChu)
     router.get('/dang_nhap', controller.dangNhap)
+    router.get('/dang_ky', controller.dangKy)
+    router.get('/admin', controller.admin)
+    router.get('/gioi_thieu', controller.gioiThieu)
+    router.post('/login', controller.xuLyDangNhap)
 
+
+    router.post('/luu/:id', controller.luuUser)
+    router.get('/xoa/:id', controller.xoaUser)
     router.post('/add_user', controller.addUser)
 
 
@@ -31,6 +31,5 @@ const initWebRoutes = (app) => {
 }
 
 export default {
-    initWebRoutes,
-
+    initWeb,
 }
