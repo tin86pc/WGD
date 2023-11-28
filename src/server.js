@@ -4,9 +4,11 @@ import 'dotenv/config'
 
 import config from './config.js'
 
-import routes from './routes.js'
+import routes from './route.js'
 
 import bodyParser from 'body-parser'
+
+
 
 const app = express()
 

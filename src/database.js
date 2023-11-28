@@ -16,29 +16,48 @@ const connection = await mysql.createConnection({
     database: process.env.database
 });
 
-
-const kiemTraUser = async (lienhe, pass) => {
-    let user = [];
+const kiemTraUserTonTai = async (lienhe) => {
     try {
         const [rows, fields] = await connection.execute(
             `Select * from users WHERE lienhe="${lienhe}"`
         );
-        user = rows;
-        let hash = user[0].pass;
+        if (rows.length == 0) {
+            console.log('kiemTraUserTonTai ' + "người dùng mới");
+            return true
+        }
 
-        bcrypt.compare(pass, hash, (err, res) => {
-            console.log(res);
-            return user;
+        if (rows.length == 1) {
+            console.log('kiemTraUserTonTai ' + "người dùng đã tồn tại");
+            return false;
+        }
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const kiemTraUser = async (lienhe, pass) => {
+
+    try {
+        // lấy thông tin từ csdl
+        const [rows, fields] = await connection.execute(
+            `Select * from users WHERE lienhe="${lienhe}"`
+        );
+        let user = rows[0];
+
+        if (user == undefined) {
+            console.log('không có người dùng');
+            return false;
+        }
+
+        // kiểm tra mật khẩu
+        const kq = await bcrypt.compareSync(pass, user.hash, (err, res) => {
+            return res;
         })
+        return kq;
 
 
-
-
-        console.log(hash);
-
-
-
-        return user;
 
     } catch (error) {
         console.log(error);
@@ -53,8 +72,23 @@ const addUser = async (lienhe, pass) => {
 
     try {
         const [rows, fields] = await connection.execute(
-            'INSERT INTO users (lienhe, pass) VALUES (?, ?)',
+            'INSERT INTO users (lienhe, hash) VALUES (?, ?)',
             [lienhe, hash]
+        );
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+const capNhat = async (id, nhiemVu) => {
+
+    // let hash = hashPassWord(pass)
+
+    try {
+        const [rows, fields] = await connection.execute(
+            `UPDATE users SET nhiemvu ="${nhiemVu}" WHERE id=${id}`
         );
 
     } catch (error) {
@@ -135,6 +169,8 @@ export default {
     suaUser,
     xoaUser,
     getUser,
+    capNhat,
     getListUser,
-    kiemTraUser
+    kiemTraUser,
+    kiemTraUserTonTai
 }

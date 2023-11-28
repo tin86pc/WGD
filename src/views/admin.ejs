@@ -29,35 +29,38 @@
 
                         <tbody>
 
-                            <tr>
+                            <form method="post" action="/cap_nhat/<%=usersList[i].id%>">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control email<%=i%>" id="lienhe" name="lienhe"
+                                            readonly value=<%=usersList[i].lienhe %>>
+                                    </td>
 
-                                <td>
-                                    <input type="text" class="form-control email<%=i%>" id="lienhe" name="lienhe"
-                                        readonly value=<%=usersList[i].lienhe %>>
-                                </td>
+                                    <td>
+                                        <select class="form-select" name="nhiemvu" chon="<%=usersList[i].nhiemvu%>">
 
-                                <td>
-                                    <select class="form-select select<%=i%>" name="nhiemvu">
-                                        <option>Người dùng</option>
-                                        <option>Đối tác</option>
-                                        <option>Admin</option>
-                                    </select>
-                                </td>
+                                            <option value="0">Người dùng </option>
+                                            <option value="1">Đối tác</option>
+                                            <option value="2">Admin</option>
+                                        </select>
+                                    </td>
 
-                                <td>
+                                    <td>
 
-                                    <a href="/luu/<%=usersList[i].id%>">
-                                        <button type="button" class="btn btn-success">Lưu</button>
-                                    </a>
+                                        <a>
+                                            <button type="submit" class="btn btn-success">Lưu</button>
+                                        </a>
 
-                                    <a href="/xoa/<%=usersList[i].id%>">
-                                        <button type="button" class="btn btn-danger">Xóa</button>
-                                    </a>
+                                        <a href="/xoa/<%=usersList[i].id%>">
+                                            <button type="button" class="btn btn-danger">Xóa</button>
+                                        </a>
 
+                                    </td>
 
-                                </td>
+                                </tr>
 
-                            </tr>
+                            </form>
+
 
                         </tbody>
 
@@ -67,20 +70,23 @@
                 </table>
 
 
-                <script>
-
-
-
-
-
-
-                </script>
-
-
-
             </div>
         </div>
     </div>
+
+    <script>
+
+        // sử lý phần chọn
+        const s = document.getElementsByName('nhiemvu')
+        s.forEach(e => {
+            const v = e.getAttribute('chon')
+            e.selectedIndex = v;
+        });
+
+
+
+    </script>
+
 
 
 

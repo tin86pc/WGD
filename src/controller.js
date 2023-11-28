@@ -12,10 +12,9 @@ const xuLyDangNhap = async (req, res) => {
     const pass = req.body.pass
 
     // mật khẩu đúng sẽ trả về user
-    let user = await database.kiemTraUser(lienhe, pass) || {};
-    // user.khoa = "sdfs"
-    console.log(user);
+    let kq = await database.kiemTraUser(lienhe, pass);
 
+    console.log('đăng nhập ' + kq);
 
     return res.render('dangnhap.ejs')
 
@@ -26,6 +25,7 @@ const xuLyDangNhap = async (req, res) => {
 
 const admin = async (req, res) => {
     let usersList = await database.getListUser();
+    // console.log(usersList);
     return res.render('admin.ejs', { usersList })
 }
 
@@ -38,10 +38,38 @@ const gioiThieu = (req, res) => {
 }
 
 // nhận dữ liệu từ form gửi lên
-const addUser = (req, res) => {
-    console.log(req.body.lienhe, req.body.pass);
-    database.addUser(req.body.lienhe, req.body.pass)
+const addUser = async (req, res) => {
+
+    const lienhe = req.body.lienhe
+    const pass = req.body.pass
+
+    console.log(lienhe, pass);
+    console.log('addUser liên hệ + pass');
+
+    // kiểm tra liên hệ đã tồn tại chưa
+    const tt = await database.kiemTraUserTonTai(lienhe)
+
+    if (tt === false) {
+        return res.redirect('/dang_nhap')
+    }
+
+    // Nếu chưa tồn tại thì thêm vào cơ sở dữ liệu   
+    database.addUser(lienhe, pass);
+
+
+
     return res.redirect('/dang_ky')
+}
+
+// nhận dữ liệu từ form gửi lên
+const capNhat = async (req, res) => {
+    const id = req.params.id
+    const nhiemVu = req.body.nhiemvu
+    console.log(id, nhiemVu);
+
+    const tt = await database.capNhat(id, nhiemVu)
+
+    return res.redirect('/admin')
 }
 
 const luuUser = (req, res) => {
@@ -95,6 +123,7 @@ export default {
     addUser,
     luuUser,
     xoaUser,
+    capNhat,
 
 
 
