@@ -16,10 +16,11 @@ const xuLyDangNhap = async (req, res) => {
 
     console.log('đăng nhập ' + kq);
 
+
+
+
+
     return res.render('dangnhap.ejs')
-
-
-
 }
 
 
@@ -32,7 +33,7 @@ const admin = async (req, res) => {
 
 const gioiThieu = (req, res) => {
     const data = {
-        name: "aaaaaaaaaa"
+        name: "ABC"
     }
     return res.render('gioiThieu.ejs', data)
 }
@@ -65,12 +66,13 @@ const addUser = async (req, res) => {
 const capNhat = async (req, res) => {
     const id = req.params.id
     const nhiemVu = req.body.nhiemvu
-    console.log(id, nhiemVu);
+    // console.log(id, nhiemVu);
 
     const tt = await database.capNhat(id, nhiemVu)
 
     return res.redirect('/admin')
 }
+
 
 const luuUser = (req, res) => {
     database.suaUser(req.params.id)
@@ -93,10 +95,6 @@ const dangNhap = (req, res, next) => {
     return res.render('dangnhap.ejs')
 }
 
-
-const notFound = (req, res) => {
-    return res.render('notFound.ejs')
-}
 
 
 
@@ -123,12 +121,5 @@ export default {
     addUser,
     luuUser,
     xoaUser,
-    capNhat,
-
-
-
-
-
-
-    notFound
+    capNhat
 }

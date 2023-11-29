@@ -8,8 +8,6 @@ import routes from './route.js'
 
 import bodyParser from 'body-parser'
 
-
-
 const app = express()
 
 app.use(bodyParser.json())
