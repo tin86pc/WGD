@@ -19,7 +19,7 @@ const connection = await mysql.createConnection({
 const kiemTraUserTonTai = async (lienhe) => {
     try {
         const [rows, fields] = await connection.execute(
-            `Select * from users WHERE lienhe="${lienhe}"`
+            `Select * from users WHERE lienHe="${lienhe}"`
         );
         if (rows.length == 0) {
             console.log('kiemTraUserTonTai ' + "người dùng mới");
@@ -42,7 +42,7 @@ const kiemTraUser = async (lienhe, pass) => {
     try {
         // lấy thông tin từ csdl
         const [rows, fields] = await connection.execute(
-            `Select * from users WHERE lienhe="${lienhe}"`
+            `Select * from users WHERE lienHe="${lienhe}"`
         );
         let user = rows[0];
 
@@ -67,7 +67,7 @@ const kiemTraUser = async (lienhe, pass) => {
 
 
 const addUser = async (lienhe, pass) => {
-
+    // mã hóa mật khẩu thành mã hash
     let hash = hashPassWord(pass)
 
     try {
@@ -84,11 +84,9 @@ const addUser = async (lienhe, pass) => {
 
 const capNhat = async (id, nhiemVu) => {
 
-    // let hash = hashPassWord(pass)
-
     try {
         const [rows, fields] = await connection.execute(
-            `UPDATE users SET nhiemvu ="${nhiemVu}" WHERE id=${id}`
+            `UPDATE users SET nhiemVu ="${nhiemVu}" WHERE id=${id}`
         );
 
     } catch (error) {
@@ -116,7 +114,7 @@ const getUser = async (lienhe) => {
     let user = [];
     try {
         const [rows, fields] = await connection.execute(
-            `Select * from users WHERE lienhe="${lienhe}"`
+            `Select * from users WHERE lienHe="${lienhe}"`
         );
 
 

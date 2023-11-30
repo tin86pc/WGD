@@ -110,13 +110,10 @@ const dangNhap = (req, res, next) => {
 
 export default {
     trangChu,
-
     gioiThieu,
     dangKy,
-
     dangNhap,
     xuLyDangNhap,
-
     admin,
     addUser,
     luuUser,

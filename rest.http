@@ -1,0 +1,32 @@
+GET http://localhost:1234/test
+Content-Type: application/json
+
+{
+    //"role":"adm"
+}
+
+###
+
+GET http://localhost:1234/test
+Content-Type: application/json
+
+{
+    "role":"adm"
+}
+
+###
+
+GET http://localhost:1234/test
+Content-Type: application/json
+
+{
+    "role":"mod"
+}
+
+###
+GET http://localhost:1234/test
+Content-Type: application/json
+
+{
+    "role":"aaa"
+}
