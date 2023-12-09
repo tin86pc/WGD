@@ -6,8 +6,9 @@ const trangChu = (req, res) => {
 }
 
 
-const xuLyDangNhap = async (req, res) => {
+const xuLyDangNhap = async (req, res, next) => {
     console.log('Xử lý đăng nhập');
+
     const lienhe = req.body.lienhe;
     const pass = req.body.pass
 
@@ -17,6 +18,11 @@ const xuLyDangNhap = async (req, res) => {
     console.log('đăng nhập ' + kq);
 
 
+    // đăng nhập thành công
+    if (kq) {
+        const role = 1;
+        return res.redirect(`/adm/${role}`)
+    }
 
 
 

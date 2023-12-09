@@ -9,12 +9,12 @@ const hashPassWord = (pass) => {
 }
 
 
-
 const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: process.env.database
 });
+
 
 const kiemTraUserTonTai = async (lienhe) => {
     try {
@@ -36,6 +36,7 @@ const kiemTraUserTonTai = async (lienhe) => {
         console.log(error);
     }
 }
+
 
 const kiemTraUser = async (lienhe, pass) => {
 
@@ -65,7 +66,6 @@ const kiemTraUser = async (lienhe, pass) => {
 }
 
 
-
 const addUser = async (lienhe, pass) => {
     // mã hóa mật khẩu thành mã hash
     let hash = hashPassWord(pass)
@@ -82,6 +82,7 @@ const addUser = async (lienhe, pass) => {
 
 }
 
+
 const capNhat = async (id, nhiemVu) => {
 
     try {
@@ -94,6 +95,7 @@ const capNhat = async (id, nhiemVu) => {
     }
 
 }
+
 
 const getListUser = async () => {
     let user = [];
@@ -109,6 +111,7 @@ const getListUser = async () => {
         console.log(error);
     }
 }
+
 
 const getUser = async (lienhe) => {
     let user = [];
@@ -129,6 +132,7 @@ const getUser = async (lienhe) => {
     }
 }
 
+
 const xoaUser = async (id) => {
     try {
         const [rows, fields] = await connection.execute(
@@ -139,6 +143,7 @@ const xoaUser = async (id) => {
         console.log(error);
     }
 }
+
 
 const suaUser = async (id) => {
     try {
