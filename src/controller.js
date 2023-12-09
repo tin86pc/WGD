@@ -9,9 +9,11 @@ const trangChu = (req, res) => {
 const xuLyDangNhap = async (req, res, next) => {
     console.log('Xử lý đăng nhập');
 
+    // lấy thông tin từ form đăng nhập gửi lên
     const lienhe = req.body.lienhe;
     const pass = req.body.pass
 
+    // kiểm tra với dữ liêu trong db
     // mật khẩu đúng sẽ trả về user
     let kq = await database.kiemTraUser(lienhe, pass);
 
@@ -20,12 +22,14 @@ const xuLyDangNhap = async (req, res, next) => {
 
     // đăng nhập thành công
     if (kq) {
+
+        req.role = '1';
         const role = 1;
         return res.redirect(`/adm/${role}`)
     }
 
 
-
+    // đăng nhập không thành công
     return res.render('dangnhap.ejs')
 }
 

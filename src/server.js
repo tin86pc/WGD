@@ -34,9 +34,6 @@ app.get('/xoa/:id', controller.xoaUser)
 
 
 // router cho adm
-
-
-
 app.use('/adm/:role', mdw.ktDangNhap, mdw.ktQuyen, router.admin)
 
 // router cho mode

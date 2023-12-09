@@ -1,12 +1,12 @@
 
 const ktDangNhap = (req, res, next) => {
-
-    const lienhe = req.body.lienhe;
-    const pass = req.body.pass
-
-    console.log(lienhe, pass);
-
+    console.log('kiểm tra đăng nhập');
     const role = req.params.role
+
+    const role2 = req.body.role;
+    console.log('role2');
+    console.log(role2);
+
     if (role == undefined) {
         console.log('chưa đăng nhập');
         return res.redirect('/dang_nhap')
@@ -17,6 +17,8 @@ const ktDangNhap = (req, res, next) => {
 const nv = ['1', '2']
 
 const ktQuyen = (req, res, next) => {
+
+    console.log('Kiểm tra quyền');
 
     const role = req.params.role
 
