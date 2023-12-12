@@ -1,38 +1,54 @@
+import database from "./database.js"
 
-const ktDangNhap = (req, res, next) => {
-    console.log('kiểm tra đăng nhập');
-    const role = req.params.role
+const ktMatKhau = async (req, res, next) => {
+    console.log('kiểm tra mật khẩu');
+    const lienhe = req.body.lienhe;
+    const pass = req.body.pass;
 
-    const role2 = req.body.role;
-    console.log('role2');
-    console.log(role2);
 
-    if (role == undefined) {
-        console.log('chưa đăng nhập');
-        return res.redirect('/dang_nhap')
+    console.log(lienhe, pass);
+
+    let kq = await database.kiemTraUser(lienhe, pass);
+    console.log(kq);
+
+    if (kq) {
+        req.role = '1';
+        console.log('kiểm tra mật khẩu ok');
+        next();
     }
-    next();
-}
+    else {
+        return res.render('dangnhap.ejs')
+    }
 
-const nv = ['1', '2']
+}
 
 const ktQuyen = (req, res, next) => {
 
     console.log('Kiểm tra quyền');
 
-    const role = req.params.role
+    const role = req.role
+    console.log(role);
 
-    if (!nv.includes(role)) {
-        return res.status(401).json('Bạn không có quyền')
+    if (role == '0') {
+        console.log('Quyền admin');
+        next();
+    }
+    if (role == '1') {
+        console.log('Quyền đối tác');
+        next();
+    }
+    if (role == '2') {
+        console.log('Quyền người dùng');
+        next();
     }
 
-    next();
+
 }
 
 
 
 
 export default {
-    ktQuyen,
-    ktDangNhap
+    ktMatKhau,
+    ktQuyen
 }

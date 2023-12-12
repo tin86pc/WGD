@@ -22,10 +22,10 @@ const xuLyDangNhap = async (req, res, next) => {
 
     // đăng nhập thành công
     if (kq) {
-
-        req.role = '1';
-        const role = 1;
-        return res.redirect(`/adm/${role}`)
+        // lấy role trong cơ sở dữ liệu
+        // req.role = '1';
+        // const role = 1;
+        next();
     }
 
 
@@ -38,6 +38,12 @@ const admin = async (req, res) => {
     let usersList = await database.getListUser();
     // console.log(usersList);
     return res.render('admin.ejs', { usersList })
+}
+
+const duan = async (req, res) => {
+    let duAnList = await database.getListUser();
+    // console.log(usersList);
+    return res.render('du_an.ejs', { duAnList })
 }
 
 
