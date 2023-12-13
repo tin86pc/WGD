@@ -1,9 +1,10 @@
 import express from 'express'
 import 'dotenv/config'
 import bodyParser from 'body-parser'
-import controller from './controller.js'
+import cookieParser from 'cookie-parser'
 
-import router from './routers.js'
+
+import controller from './controller.js'
 import mdw from './mdw.js'
 
 const app = express()
@@ -11,49 +12,35 @@ const app = express()
 // config
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(cookieParser("12345"))
 app.use(express.static('./src/public'));
-
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 
 
-// router cho khách
-app.get('/', controller.trangChu)
-app.get('/dang_nhap', controller.dangNhap)
-app.get('/dang_ky', controller.dangKy)
+// router
+import router_user from './router_user.js';
+app.use('', router_user);
 
+import router_dt from './router_dt.js';
+app.use('/dt', mdw.ktQuyen, router_dt);
 
-app.post('/add_user', controller.addUser)
-app.post('/luu/:id', controller.luuUser)
-app.post('/cap_nhat/:id', controller.capNhat)
-app.get('/xoa/:id', controller.xoaUser)
-
-// app.post('/xu_ly_dang_nhap', controller.xuLyDangNhap)
-// app.use('/adm', mdw.ktMatKhau, mdw.ktQuyen, router.admin)
-
-app.post('/xu_ly_dang_nhap', mdw.ktMatKhau, mdw.ktQuyen, controller.admin)
+import router_adm from './router_adm.js';
+app.use('/adm', mdw.ktQuyen, router_adm);
 
 
 
-
-
-
-
-
-
+// app.get('/getCookie', (req, res) => {
+//     let valueCookies = req.signedCookies.ten_cookie
+//     console.log(valueCookies);
+//     res.json({ valueCookies: valueCookies })
+// })
 
 
 
 
 app.get('/*', controller.gioiThieu)
-
-
-
-
-
-
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {

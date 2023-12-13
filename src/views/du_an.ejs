@@ -7,67 +7,67 @@
 
 
 
-                <h1>Admin</h1>
+                <h1>Dự án/h1>
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
-                    <button class="btn btn-success" type="submit">Tìm</button>
-                </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
+                        <button class="btn btn-success" type="submit">Tìm</button>
+                    </div>
 
-                <p>Danh sách người dùng</p>
+                    <p>Danh sách người dùng</p>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Liên lạc</th>
-                            <th>Quyền</th>
-                            <th>Sửa</th>
-                        </tr>
-                    </thead>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Liên lạc</th>
+                                <th>Quyền</th>
+                                <th>Sửa</th>
+                            </tr>
+                        </thead>
 
-                    <% for(var i=0; i<usersList.length; i++) {%>
+                        <% for(var i=0; i<usersList.length; i++) {%>
 
-                        <tbody>
+                            <tbody>
 
-                            <form method="post" action="/cap_nhat/<%=usersList[i].id%>">
-                                <tr>
-                                    <td>
-                                        <input type="text" class="form-control email<%=i%>" id="lienhe" name="lienhe"
-                                            readonly value=<%=usersList[i].lienHe %>>
-                                    </td>
+                                <form method="post" action="/cap_nhat/<%=usersList[i].id%>">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control email<%=i%>" id="lienhe"
+                                                name="lienhe" readonly value=<%=usersList[i].lienHe %>>
+                                        </td>
 
-                                    <td>
-                                        <select class="form-select" name="nhiemvu" chon="<%=usersList[i].nhiemVu%>">
+                                        <td>
+                                            <select class="form-select" name="nhiemvu" chon="<%=usersList[i].nhiemVu%>">
 
-                                            <option value="0">Người dùng </option>
-                                            <option value="1">Đối tác</option>
-                                            <option value="2">Admin</option>
-                                        </select>
-                                    </td>
+                                                <option value="0">Người dùng </option>
+                                                <option value="1">Đối tác</option>
+                                                <option value="2">Admin</option>
+                                            </select>
+                                        </td>
 
-                                    <td>
+                                        <td>
 
-                                        <a>
-                                            <button type="submit" class="btn btn-success">Lưu</button>
-                                        </a>
+                                            <a>
+                                                <button type="submit" class="btn btn-success">Lưu</button>
+                                            </a>
 
-                                        <a href="/xoa/<%=usersList[i].id%>">
-                                            <button type="button" class="btn btn-danger">Xóa</button>
-                                        </a>
+                                            <a href="/xoa/<%=usersList[i].id%>">
+                                                <button type="button" class="btn btn-danger">Xóa</button>
+                                            </a>
 
-                                    </td>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                            </form>
-
-
-                        </tbody>
-
-                        <% } %>
+                                </form>
 
 
-                </table>
+                            </tbody>
+
+                            <% } %>
+
+
+                    </table>
 
 
             </div>

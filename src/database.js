@@ -38,32 +38,7 @@ const kiemTraUserTonTai = async (lienhe) => {
 }
 
 
-const kiemTraUser = async (lienhe, pass) => {
 
-    try {
-        // lấy thông tin từ csdl
-        const [rows, fields] = await connection.execute(
-            `Select * from users WHERE lienHe="${lienhe}"`
-        );
-        let user = rows[0];
-
-        if (user == undefined) {
-            console.log('không có người dùng');
-            return false;
-        }
-
-        // kiểm tra mật khẩu
-        const kq = await bcrypt.compareSync(pass, user.hash, (err, res) => {
-            return res;
-        })
-        return kq;
-
-
-
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 
 const addUser = async (lienhe, pass) => {
@@ -119,12 +94,7 @@ const getUser = async (lienhe) => {
         const [rows, fields] = await connection.execute(
             `Select * from users WHERE lienHe="${lienhe}"`
         );
-
-
         user = rows;
-        console.log(user);
-
-
         return user;
 
     } catch (error) {
@@ -164,6 +134,22 @@ const suaUser = async (id) => {
 }
 
 
+const kiemTraPass = async (pass, hash) => {
+    try {
+        // kiểm tra khớp mật khẩu
+        const kq = await bcrypt.compareSync(pass, hash, (err, res) => {
+            return res;
+        })
+
+        // console.log("kiểm tra user");
+        return kq;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 
 
@@ -174,6 +160,6 @@ export default {
     getUser,
     capNhat,
     getListUser,
-    kiemTraUser,
+    kiemTraPass,
     kiemTraUserTonTai
 }

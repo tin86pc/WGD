@@ -2,7 +2,7 @@ import database from "./database.js"
 
 
 const trangChu = (req, res) => {
-    return res.render('trangChu.ejs')
+    return res.render('trang_chu.ejs')
 }
 
 
@@ -30,12 +30,16 @@ const xuLyDangNhap = async (req, res, next) => {
 
 
     // đăng nhập không thành công
-    return res.render('dangnhap.ejs')
+    return res.render('dang_nhap.ejs')
 }
 
 
 const admin = async (req, res) => {
     let usersList = await database.getListUser();
+
+
+
+
     // console.log(usersList);
     return res.render('admin.ejs', { usersList })
 }
@@ -51,7 +55,7 @@ const gioiThieu = (req, res) => {
     const data = {
         name: "ABC"
     }
-    return res.render('gioiThieu.ejs', data)
+    return res.render('gioi_thieu.ejs', data)
 }
 
 // nhận dữ liệu từ form gửi lên
@@ -103,12 +107,12 @@ const xoaUser = (req, res) => {
 
 
 const dangKy = (req, res) => {
-    return res.render('dangky.ejs')
+    return res.render('dang_ky.ejs')
 }
 
 
 const dangNhap = (req, res, next) => {
-    return res.render('dangnhap.ejs')
+    return res.render('dang_nhap.ejs')
 }
 
 
