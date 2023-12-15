@@ -6,48 +6,22 @@ const trangChu = (req, res) => {
 }
 
 
-const xuLyDangNhap = async (req, res, next) => {
-    console.log('Xử lý đăng nhập');
-
-    // lấy thông tin từ form đăng nhập gửi lên
-    const lienhe = req.body.lienhe;
-    const pass = req.body.pass
-
-    // kiểm tra với dữ liêu trong db
-    // mật khẩu đúng sẽ trả về user
-    let kq = await database.kiemTraUser(lienhe, pass);
-
-    console.log('đăng nhập ' + kq);
-
-
-    // đăng nhập thành công
-    if (kq) {
-        // lấy role trong cơ sở dữ liệu
-        // req.role = '1';
-        // const role = 1;
-        next();
-    }
-
-
-    // đăng nhập không thành công
-    return res.render('dang_nhap.ejs')
-}
-
 
 const admin = async (req, res) => {
     let usersList = await database.getListUser();
+    let nhiemVu = req.nhiemVu
+    let lienHe = req.lienHe
 
-
-
-
-    // console.log(usersList);
-    return res.render('admin.ejs', { usersList })
+    return res.render('admin.ejs', { usersList, nhiemVu, lienHe })
 }
 
-const duan = async (req, res) => {
+const duAn = async (req, res) => {
+
     let duAnList = await database.getListUser();
-    // console.log(usersList);
-    return res.render('du_an.ejs', { duAnList })
+    let nhiemVu = req.nhiemVu
+    let lienHe = req.lienHe
+
+    return res.render('du_an.ejs', { duAnList, nhiemVu, lienHe })
 }
 
 
@@ -86,23 +60,25 @@ const addUser = async (req, res) => {
 const capNhat = async (req, res) => {
     const id = req.params.id
     const nhiemVu = req.body.nhiemvu
+
+    console.log("nhiệm vụ", nhiemVu);
     // console.log(id, nhiemVu);
 
     const tt = await database.capNhat(id, nhiemVu)
 
-    return res.redirect('/admin')
+    return res.redirect('/adm')
 }
 
 
 const luuUser = (req, res) => {
     database.suaUser(req.params.id)
-    return res.redirect('/admin')
+    return res.redirect('/adm')
 }
 
 
 const xoaUser = (req, res) => {
     database.xoaUser(req.params.id)
-    return res.redirect('/admin')
+    return res.redirect('/adm')
 }
 
 
@@ -133,10 +109,10 @@ export default {
     gioiThieu,
     dangKy,
     dangNhap,
-    xuLyDangNhap,
     admin,
     addUser,
     luuUser,
     xoaUser,
-    capNhat
+    capNhat,
+    duAn
 }

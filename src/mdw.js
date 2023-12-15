@@ -14,6 +14,10 @@ const ktMatKhau = async (req, res, next) => {
 
     // Kiểm tra khớp mật khẩu
     const hash = user[0].hash
+
+    // Thêm vào req để cho vào cookie
+    req.user = user[0]
+
     const kq = await database.kiemTraPass(pass, hash)
 
     if (kq == false) {
@@ -25,51 +29,72 @@ const ktMatKhau = async (req, res, next) => {
 
 }
 
-import cookieParser from "cookie-parser"
 
 
 const ghiCookie = (req, res, next) => {
-    console.log('ghi cookie');
-    res.cookie('ten_cookie', 'value', { signed: true })
-    res.json({ ok: 1 })
+
+    // Chỉ những trường dữ liệu này mới được đưa vào cookie
+    const value = {
+        id: req.user.id,
+        lienHe: req.user.lienHe,
+        nhiemVu: req.user.nhiemVu,
+        duAn: req.user.duAn
+    }
+
+
+    res.cookie(process.env.ten_cookie, value, { signed: true })
+    next()
 }
 
-// lấy cookies
-
-// let valueCookies = req.signedCookies.ten_cookie
-// console.log(valueCookies);
 
 
-
-
-
-
-
-const ktQuyen = (req, res, next) => {
-    const role = "2"
-
-
-    if (role == '0') {
-        console.log('Quyền admin');
-        next();
+const ktCookie = (req, res, next) => {
+    let valueCookies = req.signedCookies[process.env.ten_cookie]
+    if (valueCookies == undefined) {
+        console.log('Chưa đăng nhập');
+        return res.redirect('/dang_nhap')
     }
-    if (role == '1') {
-        console.log('Quyền đối tác');
-        next();
-    }
-    if (role == '2') {
-        console.log('Quyền người dùng');
-        next();
+    if (valueCookies == false) {
+        console.log('cookies không đúng');
+        return res.redirect('/dang_nhap')
     }
 
+    req.nhiemVu = valueCookies.nhiemVu;
+    req.lienHe = valueCookies.lienHe;
+
+    next()
+}
+
+
+const ktQuyenQl = (req, res, next) => {
+    if (req.nhiemVu != 'ql') {
+        console.log('không có quyền ql');
+        return res.redirect('/dang_nhap')
+    }
+
+    next();
 
 }
+
+const ktQuyenAdm = (req, res, next) => {
+    if (req.nhiemVu != 'adm') {
+        console.log('không có quyền adm');
+        return res.redirect('/dang_nhap')
+    }
+
+    next();
+}
+
+
 
 
 
 
 export default {
     ktMatKhau,
-    ktQuyen,
+    ktQuyenAdm,
+    ktQuyenQl,
+    ktCookie,
     ghiCookie
+
 }

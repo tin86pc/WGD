@@ -12,7 +12,7 @@ const app = express()
 // config
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser("12345"))
+app.use(cookieParser(process.env.mk_cookie))
 app.use(express.static('./src/public'));
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
@@ -23,19 +23,12 @@ app.set('views', './src/views');
 import router_user from './router_user.js';
 app.use('', router_user);
 
-import router_dt from './router_dt.js';
-app.use('/dt', mdw.ktQuyen, router_dt);
+import router_ql from './router_ql.js';
+app.use('/ql', mdw.ktCookie, mdw.ktQuyenQl, router_ql);
 
 import router_adm from './router_adm.js';
-app.use('/adm', mdw.ktQuyen, router_adm);
+app.use('/adm', mdw.ktCookie, mdw.ktQuyenAdm, router_adm);
 
-
-
-// app.get('/getCookie', (req, res) => {
-//     let valueCookies = req.signedCookies.ten_cookie
-//     console.log(valueCookies);
-//     res.json({ valueCookies: valueCookies })
-// })
 
 
 

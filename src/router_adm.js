@@ -1,7 +1,10 @@
 // routes/index.js and users.js
 import express from 'express';
 import controller from './controller.js'
-var router = express.Router();
+const router = express.Router();
+
+// router đã đăng nhập
+// đã xét cookie
 
 
 router.get('/', controller.admin)
