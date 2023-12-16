@@ -44,11 +44,12 @@ const kiemTraUserTonTai = async (lienhe) => {
 const addUser = async (lienhe, pass) => {
     // mã hóa mật khẩu thành mã hash
     let hash = hashPassWord(pass)
+    let nhiemVu = 'user'
 
     try {
         const [rows, fields] = await connection.execute(
-            'INSERT INTO users (lienhe, hash) VALUES (?, ?)',
-            [lienhe, hash]
+            'INSERT INTO users (lienhe, hash, nhiemVu) VALUES (?, ?, ?)',
+            [lienhe, hash, nhiemVu]
         );
 
     } catch (error) {
