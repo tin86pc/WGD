@@ -42,7 +42,14 @@ const ghiCookie = (req, res, next) => {
     }
 
 
-    res.cookie(process.env.ten_cookie, value, { signed: true })
+    const setting = {
+        expires: new Date(Date.now() + 7 * 24 * 3600 * 1000),// 1 tuần sẽ yêu cầu đăng nhập lại
+        signed: true,// ký bằng mật khẩu
+        httpOnly: true,
+    }
+
+
+    res.cookie(process.env.ten_cookie, value, setting)
     next()
 }
 
