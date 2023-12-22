@@ -13,4 +13,9 @@ router.post('/cap_nhat/:id', controller.capNhat)
 router.get('/xoa/:id', controller.xoaUser)
 
 
+
+
+
+
+
 export default router;

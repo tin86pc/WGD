@@ -1,106 +1,97 @@
-<!DOCTYPE html>
-<html lang="vi">
+<%- include('element/dieu_huong') %>
 
-<%- include('element/head') %>
-
-    <body>
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-12  bg-light">
-                    <%- include('element/user') %>
-
-                        <h1>Tên dự án</h1>
-                        <h2>Qrcode</h2>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12  bg-light">
 
 
-                        <table class="table table-hover">
+                <h1>Tên dự án</h1>
+                <h2>Qrcode</h2>
 
 
-                            <% for(var i=0; i<10; i++) {%>
-
-                                <tbody>
-
-                                    <form method="post" action="">
+                <table class="table table-hover">
 
 
+                    <% for(var i=0; i<10; i++) {%>
 
-                                        <tr>
+                        <tbody>
 
-                                            <div class="row justify-content-center mb-3">
-                                                <div class="col-md-12 col-xl-12">
-                                                    <div class="card shadow-0 border rounded-3">
-                                                        <div class="card-body">
-                                                            <div class="row">
+                            <form method="post" action="">
 
-                                                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                                                    <div
-                                                                        class="bg-image hover-zoom ripple rounded ripple-surface">
-                                                                        <img src="/them anh.jpg" class="w-100" />
-                                                                        <a href="#!">
-                                                                            <div class="hover-overlay">
-                                                                                <div class="mask"
-                                                                                    style="background-color: rgba(253, 253, 253, 0.15);">
-                                                                                </div>
-                                                                            </div>
-                                                                        </a>
+                                <tr>
+
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-md-12 col-xl-12">
+                                            <div class="card shadow-0 border rounded-3">
+                                                <div class="card-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                                            <div
+                                                                class="bg-image hover-zoom ripple rounded ripple-surface">
+                                                                <img src="/them anh.jpg" class="w-100" />
+                                                                <a href="#!">
+                                                                    <div class="hover-overlay">
+                                                                        <div class="mask"
+                                                                            style="background-color: rgba(253, 253, 253, 0.15);">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
 
-                                                                <div class="col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="col-md-6 col-lg-6 col-xl-6">
 
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1"
-                                                                            class="form-label">Tên hàng</label>
-                                                                        <input type="email" class="form-control"
-                                                                            id="exampleInputEmail1"
-                                                                            aria-describedby="emailHelp">
-                                                                    </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleInputEmail1" class="form-label">Tên
+                                                                    hàng</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="exampleInputEmail1"
+                                                                    aria-describedby="emailHelp">
+                                                            </div>
 
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1"
-                                                                            class="form-label">Mô tả</label>
-                                                                        <textarea class="form-control"
-                                                                            aria-label="With textarea"></textarea>
-                                                                    </div>
-
-
-                                                                </div>
-
-
-                                                                <div
-                                                                    class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-
-                                                                    <div
-                                                                        class="d-flex flex-row align-items-center mb-1">
-                                                                        <h5 class="mb-1 me-1">Giá: </h5>
-                                                                        <input type="number" class="form-control" />
-
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="d-flex flex-row align-items-center mb-1">
-                                                                        <h5 class="mb-1 me-1">Còn: </h5>
-                                                                        <input type="number" id="typeNumber"
-                                                                            class="form-control" />
-
-                                                                    </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleInputEmail1" class="form-label">Mô
+                                                                    tả</label>
+                                                                <textarea class="form-control"
+                                                                    aria-label="With textarea"></textarea>
+                                                            </div>
 
 
-                                                                    <div class="d-flex flex-column mt-4">
-                                                                        <button class="btn btn-primary btn-sm"
-                                                                            type="button">Lưu</button>
-                                                                        <button
-                                                                            class="btn btn-outline-primary btn-sm mt-2"
-                                                                            type="button">
-                                                                            Xóa
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                        </div>
+
+
+                                                        <div
+                                                            class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+
+                                                            <div class="d-flex flex-row align-items-center mb-1">
+                                                                <h5 class="mb-1 me-1">Giá: </h5>
+                                                                <input type="number" class="form-control" />
+
+                                                            </div>
+
+                                                            <div class="d-flex flex-row align-items-center mb-1">
+                                                                <h5 class="mb-1 me-1">Còn: </h5>
+                                                                <input type="number" id="typeNumber"
+                                                                    class="form-control" />
+
+                                                            </div>
+
+
+                                                            <div class="d-flex flex-column mt-4">
+                                                                <button class="btn btn-primary btn-sm"
+                                                                    type="button">Lưu</button>
+                                                                <button class="btn btn-outline-primary btn-sm mt-2"
+                                                                    type="button">
+                                                                    Xóa
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
 
 
 
@@ -124,19 +115,17 @@
 
 
 
-                                        </tr>
+                                </tr>
 
-                                    </form>
-
-
-                                </tbody>
-
-                                <% } %>
+                            </form>
 
 
-                        </table>
+                        </tbody>
+
+                        <% } %>
 
 
+                </table>
 
 
 
@@ -160,20 +149,18 @@
 
 
 
-                </div>
+
+
             </div>
         </div>
+    </div>
 
 
-        <script>
-
-
-
-        </script>
+    <script>
 
 
 
-
+    </script>
 
 
 
@@ -189,4 +176,8 @@
 
 
 
-        <%- include('element/footer') %>
+
+
+
+
+    <%- include('element/footer') %>

@@ -19,17 +19,16 @@ app.set('views', './src/views');
 
 
 
+
 // router
 import router_user from './router_user.js';
-app.use('', router_user);
+app.use('', mdw.docCookie, router_user);
 
 import router_ql from './router_ql.js';
-app.use('/ql', mdw.ktCookie, mdw.ktQuyenQl, router_ql);
+app.use('/ql', mdw.docCookie, mdw.ktCookie, mdw.ktQuyenQl, router_ql);
 
 import router_adm from './router_adm.js';
-app.use('/adm', mdw.ktCookie, mdw.ktQuyenAdm, router_adm);
-
-
+app.use('/adm', mdw.docCookie, mdw.ktCookie, mdw.ktQuyenAdm, router_adm);
 
 
 

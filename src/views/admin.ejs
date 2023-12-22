@@ -1,100 +1,91 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-<%- include('element/head') %>
-
-    <body>
-
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-12  bg-light">
-
-                    <%- include('element/user') %>
-
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
-                            <button class="btn btn-success" type="submit">Tìm</button>
-                        </div>
-
-                        <p>Danh sách người dùng</p>
-
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Liên lạc</th>
-                                    <th>Quyền</th>
-                                    <th>Sửa</th>
-                                </tr>
-                            </thead>
-
-                            <% for(var i=0; i<usersList.length; i++) {%>
-
-                                <tbody>
-
-                                    <form method="post" action="/adm/cap_nhat/<%=usersList[i].id%>">
-                                        <tr>
-                                            <td>
-                                                <input type="text" class="form-control email<%=i%>" id="lienhe"
-                                                    name="lienhe" readonly value=<%=usersList[i].lienHe %>>
-                                            </td>
-
-                                            <td>
-                                                <select class="form-select" name="nhiemvu"
-                                                    chon="<%=usersList[i].nhiemVu%>">
-
-                                                    <option value="adm">Admin</option>
-                                                    <option value="ql">Quản lý</option>
-                                                    <option value="user">Người dùng</option>
-
-                                                </select>
-                                            </td>
-
-                                            <td>
-                                                <a>
-                                                    <button type="submit" class="btn btn-success">Lưu</button>
-                                                </a>
-
-                                                <a href="/adm/xoa/<%=usersList[i].id%>">
-                                                    <button type="button" class="btn btn-danger">Xóa</button>
-                                                </a>
-
-                                            </td>
-
-                                        </tr>
-
-                                    </form>
+<%- include('element/dieu_huong') %>
 
 
-                                </tbody>
 
-                                <% } %>
+    <div class="container ">
+        <div class="row">
+            <div class="col-12  bg-light">
 
-
-                        </table>
-
-
+                <div class="input-group mt-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
+                    <button class="btn btn-success" type="submit">Tìm</button>
                 </div>
+
+                <p>Danh sách người dùng</p>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Liên lạc</th>
+                            <th>Quyền</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+
+                    <% for(var i=0; i<usersList.length; i++) {%>
+
+                        <tbody>
+
+                            <form method="post" action="/adm/cap_nhat/<%=usersList[i].id%>">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control email<%=i%>" id="lienhe" name="lienhe"
+                                            readonly value=<%=usersList[i].lienHe %>>
+                                    </td>
+
+                                    <td>
+                                        <select class="form-select" name="nhiemvu" chon="<%=usersList[i].nhiemVu%>">
+
+                                            <option value="adm">Admin</option>
+                                            <option value="ql">Quản lý</option>
+                                            <option value="user">Người dùng</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <a>
+                                            <button type="submit" class="btn btn-success">Lưu</button>
+                                        </a>
+
+                                        <a href="/adm/xoa/<%=usersList[i].id%>">
+                                            <button type="button" class="btn btn-danger">Xóa</button>
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            </form>
+
+
+                        </tbody>
+
+                        <% } %>
+
+
+                </table>
+
+
             </div>
         </div>
-
-        <script>
-
-            // sử lý phần chọn
-            const s = document.getElementsByName('nhiemvu')
-            s.forEach(e => {
-                const v = e.getAttribute('chon')
-
-                e.value = v;
-            });
+    </div>
 
 
 
-        </script>
+    <script>
+
+        // sử lý phần chọn
+        const s = document.getElementsByName('nhiemvu')
+        s.forEach(e => {
+            const v = e.getAttribute('chon')
+
+            e.value = v;
+        });
 
 
 
-
-
+    </script>
 
 
 
@@ -107,4 +98,9 @@
 
 
 
-        <%- include('element/footer') %>
+
+
+
+
+
+    <%- include('element/footer') %>

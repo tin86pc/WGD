@@ -2,7 +2,24 @@ import database from "./database.js"
 
 
 const trangChu = (req, res) => {
+
+
     return res.render('trang_chu.ejs')
+}
+
+const dangNhap = (req, res, next) => {
+
+    return res.render('dang_nhap.ejs')
+}
+
+const dangKy = (req, res) => {
+
+    return res.render('dang_ky.ejs')
+}
+
+const gioiThieu = (req, res) => {
+
+    return res.render('gioi_thieu.ejs')
 }
 
 
@@ -11,6 +28,8 @@ const admin = async (req, res) => {
     let usersList = await database.getListUser();
     let nhiemVu = req.nhiemVu
     let lienHe = req.lienHe
+
+
 
     return res.render('admin.ejs', { usersList, nhiemVu, lienHe })
 }
@@ -25,12 +44,7 @@ const duAn = async (req, res) => {
 }
 
 
-const gioiThieu = (req, res) => {
-    const data = {
-        name: "ABC"
-    }
-    return res.render('gioi_thieu.ejs', data)
-}
+
 
 // nhận dữ liệu từ form gửi lên
 const addUser = async (req, res) => {
@@ -50,8 +64,6 @@ const addUser = async (req, res) => {
 
     // Nếu chưa tồn tại thì thêm vào cơ sở dữ liệu   
     database.addUser(lienhe, pass);
-
-
 
     return res.redirect('/dang_ky')
 }
@@ -82,14 +94,10 @@ const xoaUser = (req, res) => {
 }
 
 
-const dangKy = (req, res) => {
-    return res.render('dang_ky.ejs')
-}
 
 
-const dangNhap = (req, res, next) => {
-    return res.render('dang_nhap.ejs')
-}
+
+
 
 
 

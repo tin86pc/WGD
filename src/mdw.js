@@ -44,7 +44,7 @@ const ghiCookie = (req, res, next) => {
 
     const setting = {
         expires: new Date(Date.now() + 7 * 24 * 3600 * 1000),// 1 tuần sẽ yêu cầu đăng nhập lại
-        signed: true,// ký bằng mật khẩu
+        signed: true,// ký bảo mật bằng mật khẩu
         httpOnly: true,
     }
 
@@ -53,6 +53,48 @@ const ghiCookie = (req, res, next) => {
     next()
 }
 
+
+const xoaCookie = (req, res, next) => {
+
+    // Chỉ những trường dữ liệu này mới được đưa vào cookie
+    const value = {
+    }
+
+
+    const setting = {
+        expires: new Date(Date.now()),
+        signed: true,// ký bảo mật bằng mật khẩu
+        httpOnly: true,
+    }
+
+
+    res.cookie(process.env.ten_cookie, value, setting)
+    next()
+}
+
+const docCookie = (req, res, next) => {
+    let valueCookies = req.signedCookies[process.env.ten_cookie]
+
+    if (valueCookies == undefined || valueCookies == false) {
+        return next()
+    }
+
+    req.lienHe = valueCookies.lienHe;
+    req.nhiemVu = valueCookies.nhiemVu;
+
+
+    const data = {
+        ten: req.lienHe,
+        nhiemVu: req.nhiemVu
+    }
+
+    res.locals.data = data
+
+    next()
+
+
+
+}
 
 
 const ktCookie = (req, res, next) => {
@@ -66,14 +108,27 @@ const ktCookie = (req, res, next) => {
         return res.redirect('/dang_nhap')
     }
 
-    req.nhiemVu = valueCookies.nhiemVu;
+
     req.lienHe = valueCookies.lienHe;
+    req.nhiemVu = valueCookies.nhiemVu;
+
+
 
     next()
 }
 
 
 const ktQuyenQl = (req, res, next) => {
+
+    const data = {
+        ten: req.lienHe,
+        nhiemVu: req.nhiemVu
+    }
+
+    res.locals.data = data
+
+
+
     if (req.nhiemVu != 'ql') {
         console.log('không có quyền ql');
         return res.redirect('/dang_nhap')
@@ -84,6 +139,11 @@ const ktQuyenQl = (req, res, next) => {
 }
 
 const ktQuyenAdm = (req, res, next) => {
+
+
+
+
+
     if (req.nhiemVu != 'adm') {
         console.log('không có quyền adm');
         return res.redirect('/dang_nhap')
@@ -101,7 +161,9 @@ export default {
     ktMatKhau,
     ktQuyenAdm,
     ktQuyenQl,
+    docCookie,
     ktCookie,
-    ghiCookie
+    ghiCookie,
+    xoaCookie,
 
 }
