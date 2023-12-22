@@ -82,7 +82,6 @@ const docCookie = (req, res, next) => {
     req.lienHe = valueCookies.lienHe;
     req.nhiemVu = valueCookies.nhiemVu;
 
-
     const data = {
         ten: req.lienHe,
         nhiemVu: req.nhiemVu
@@ -98,36 +97,17 @@ const docCookie = (req, res, next) => {
 
 
 const ktCookie = (req, res, next) => {
-    let valueCookies = req.signedCookies[process.env.ten_cookie]
-    if (valueCookies == undefined) {
+
+    if (req.lienHe == undefined) {
         console.log('Chưa đăng nhập');
         return res.redirect('/dang_nhap')
     }
-    if (valueCookies == false) {
-        console.log('cookies không đúng');
-        return res.redirect('/dang_nhap')
-    }
-
-
-    req.lienHe = valueCookies.lienHe;
-    req.nhiemVu = valueCookies.nhiemVu;
-
-
 
     next()
 }
 
 
 const ktQuyenQl = (req, res, next) => {
-
-    const data = {
-        ten: req.lienHe,
-        nhiemVu: req.nhiemVu
-    }
-
-    res.locals.data = data
-
-
 
     if (req.nhiemVu != 'ql') {
         console.log('không có quyền ql');
@@ -139,10 +119,6 @@ const ktQuyenQl = (req, res, next) => {
 }
 
 const ktQuyenAdm = (req, res, next) => {
-
-
-
-
 
     if (req.nhiemVu != 'adm') {
         console.log('không có quyền adm');
