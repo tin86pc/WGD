@@ -35,7 +35,7 @@ app.use('/adm', mdw.ktCookie, mdw.ktQuyenAdm, router_adm);
 
 
 
-app.get('/*', controller.gioiThieu)
+app.get('/*', controller.trangChu)
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {

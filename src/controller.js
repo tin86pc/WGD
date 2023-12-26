@@ -17,10 +17,6 @@ const dangKy = (req, res) => {
     return res.render('dang_ky.ejs')
 }
 
-const gioiThieu = (req, res) => {
-
-    return res.render('gioi_thieu.ejs')
-}
 
 
 
@@ -28,8 +24,6 @@ const admin = async (req, res) => {
     let usersList = await database.getListUser();
     let nhiemVu = req.nhiemVu
     let lienHe = req.lienHe
-
-
 
     return res.render('admin.ejs', { usersList, nhiemVu, lienHe })
 }
@@ -42,7 +36,6 @@ const duAn = async (req, res) => {
 
     return res.render('du_an.ejs', { duAnList, nhiemVu, lienHe })
 }
-
 
 
 
@@ -114,7 +107,6 @@ const xoaUser = (req, res) => {
 
 export default {
     trangChu,
-    gioiThieu,
     dangKy,
     dangNhap,
     admin,

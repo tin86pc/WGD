@@ -22,11 +22,35 @@
                 </form>
 
                 <br>
-                <button class="btn btn-primary">Quên password</button>
-                <br>
-                <br>
                 <button class="btn btn-primary">Đăng nhập bằng google</button>
+                <br>
 
+
+
+
+                <br>
+                <button onclick="nhayTrang('/doi_pass')" class="btn btn-primary">Đổi password</button>
+                <br>
+
+
+
+                <br>
+                <button onclick="nhayTrang('/quen_pass')" class="btn btn-primary">Quên password</button>
+                <br>
+
+
+
+
+                <script>
+                    function nhayTrang(s) {
+                        console.log(s);
+                        window.location.href = s
+                    }
+
+
+
+
+                </script>
 
 
 
